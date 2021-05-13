@@ -20,3 +20,37 @@ print("Welcome", nam)
 inp = input("Europe floor? ")
 usf = int(inp) + 1
 print("US floor:", usf)
+
+## Comparison
+a < b       # Less than (also >)
+a <= b      # Less or equal to (also >=)
+a == b      # Equal to
+a != b      # Not equal to
+
+## Multi-way
+x = 0
+if x < 2:
+    print("small")
+elif x < 10:
+    print("medium")
+else:
+    print("large")
+print("All done")
+
+## Try/except
+rawstr = input("Enter a number:")
+try:
+    ival = int(rawstr)
+except:
+    ival = -1
+
+if ival > 0:
+    print("Nice work")
+else:
+    print("Not a number")
+
+try:        # try with a quit() function
+    ival = int(rawstr)
+except:
+    print("Error, please enter a number")
+    quit()
