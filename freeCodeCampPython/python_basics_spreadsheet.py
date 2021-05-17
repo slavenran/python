@@ -179,7 +179,7 @@ while True:
 
 print(sum(numbers), len(numbers), sum(numbers)/len(numbers))
 
-# String and lists
+## String and lists
 test_str = "Marko je mali pacov"
 word_list = test_str.split()        # makes a list of words
 
@@ -192,4 +192,67 @@ for line in file:
     if line.startswith("From "):
         words = line.split()
         print(words[2])
+
+## Dictionaries
+purse = dict()
+purse['money'] = 12
+purse['candy'] = 3
+purse['tissues'] = 75
+
+purse['candy'] = purse['candy'] + 1
+
+purse2 = {}
+
+print(purse['phone'])   # returns an error because phone is not in the purse
+'phone' in purse        # checking if value is present in dictionary (below is the .get() metod showcase for this)
+
+counts = {}                 # counting the number of names into dict (better way below)
+names = ['csev', 'cwen', 'csev', 'zqian', 'cwen']
+for name in names:
+    if name not in counts:
+        counts[name] = 1
+    else:
+        counts[name] += 1
+print(counts)
+
+x = purse.get('phone', 0)   # the way of checking if a key is present in a dictionary (0 is a value that returns if a key is not present)
+
+counts = {}                 # best way of dealing with dictionaries
+names = ['csev', 'cwen', 'csev', 'zqian', 'cwen']
+for name in names:
+    counts[name] = counts.get(name, 0) + 1
+print(counts)
+
+text_str = input("Your text: ")
+words_txt = text_str.split()
+words = {}
+for word in words_txt:
+    words[word] = words.get(word, 0) + 1
+print(words)
+
+for a, b in purse.items():  # python-only feature to iterate both values at the same time
+    print(a, b)
+
+## Tuples
+x = ('Glenn', 'Sally', 'Joseph')        # similar to lists, only difference is tuples are immutable
+x, y = 4, 'fred'                        # tuple assignment (python exclusive feature)
+
+(0, 1, 2) < (5, 1, 2)                   # returns true without checking second and third comparison
+
+c = {'a':10, 'b':1, 'c':22}             # sorting dict by value instead of key
+tmp = []
+for k, v in c.items():
+    tmp.append((v, k))                  # key point (list can't take 2 elements as an element but it can take a tuple of more elements)
+print(tmp)
+tmp = sorted(tmp, reverse=True)
+for val, key in tmp:                    # brings back order of key and value while it stays sorted
+    print(key, val)
+
+c = {'a':10, 'b':1, 'c':22}
+print(sorted([(v, k)  for k, v in c.items()], reverse=True))  # short version of dict to list conversion
+
+## Regular expressions
+import re
+re.search()
+re.findall()
 
