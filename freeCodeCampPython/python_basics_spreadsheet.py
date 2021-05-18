@@ -1,3 +1,27 @@
+# ⠟⠝⠈⠀⠀⠀⠡⠀⠠⢈⠠⢐⢠⢂⢔⣐⢄⡂⢔⠀⡁⢉⠸⢨
+# ⠁⠀⠀⠀⡀⢂⠡⠈⡔⣕⢮⣳⢯⣿⣻⣟⣯⣯⢷⣫⣆⡂⠀⠀
+# ⠈⠀⢀⢂⠢⡂⠕⡁⣝⢮⣳⢽⡽⣾⣻⣿⣯⡯⣟⣞⢾⢜⢆⠀
+# ⠀⢀⢂⢪⠨⢂⠥⣺⡪⣗⢗⣽⢽⡯⣿⣽⣷⢿⡽⡾⡽⣝⢎⠀
+# ⠀⢂⠢⢂⢥⢱⡹⣪⢞⡵⣻⡪⡯⡯⣟⡾⣿⣻⡽⣯⡻⣪⠧⠑
+# ⠀⠢⢑⠠⠑⠕⡝⡎⡗⡝⡎⣞⢽⡹⣕⢯⢻⠹⡹⢚⠝⡷⡽⡨
+# ⢈⠈⢄⠂⠂⠐⠀⠌⠠⢑⠱⡱⡱⡑⢔⠁⠀⡀⠐⠐⠐⡡⡹⣪
+# ⡀⡊⠀⠐⠨⠈⡁⠂⢈⠠⡱⡽⣷⡑⠁⠠⠑⠀⢉⢇⣤⢘⣪⢽
+# ⢌⠌⠀⡁⠢⠂⠐⡀⠀⢀⢳⢽⣽⡺⣨⢄⣑⢉⢃⢭⡲⣕⡭⣹
+# ⠢⠡⡱⡸⣔⢵⢱⢸⠈⠀⡪⣳⣳⢹⢜⡵⣱⢱⡱⣳⡹⣵⣻⢔
+# ⠡⡑⢕⢕⠕⡑⠡⢂⢊⢐⢕⡝⡮⡧⡳⣝⢴⡐⣁⠃⡫⡒⣕⢏
+# ⠑⢌⠢⠁⢐⠠⠑⡐⠐⠌⡪⠮⡫⠪⡪⡪⣺⢸⠰⠡⠠⠐⢱⠨
+# ⣇⡂⡂⡌⡀⠀⠁⡂⠅⠂⠀⡑⡄⢇⠇⢝⡨⡠⡁⢐⠠⢀⢪⡐
+# ⢹⡄⠕⡅⢇⠂⠑⣴⡬⣬⣬⣆⢮⣦⣷⣵⣷⡗⢃⢮⠱⡸⢰
+# ⠸⣳⡅⠜⠔⡌⡐⠈⠻⠟⣿⢿⣿⣿⠿⡻⣃⠢⣱⡳⡱⡩⢢⠣
+# ⡇⡿⣽⡪⡘⡰⠨⢐⢀⠢⢢⢄⢤⣰⠼⡾⢕⢕⡵⣝⠎⢌⢪⠪
+# ⠚⢊⠡⡂⢂⠨⠊⠔⡑⠬⡸⣘⢬⢪⣪⡺⡼⣕⢯⢞⢕⢝⠎⢻
+# ⡁⡢⠣⢀⠢⠀⠅⠱⡐⡱⡘⡔⡕⡕⣲⡹⣎⡮⡏⡑⢜⢼⡱⢩
+# ⠀⡂⡃⠅⠊⢄⢑⠠⠑⢕⢕⢝⢮⢺⢕⢟⢮⢊⢢⢱⢄⠃⣇⣞
+# ⡀⢂⢊⠠⠁⡂⡐⠀⠅⡈⠪⠪⠪⠣⠫⠑⡁⢔⠕⣜⣜⢦⡰⡎
+#              Welcome
+
+
+
 ## Operations
 a = 4 + 13      # Addition
 b = 31 - 12     # Subtraction
@@ -255,4 +279,58 @@ print(sorted([(v, k)  for k, v in c.items()], reverse=True))  # short version of
 import re
 re.search()
 re.findall()
+x = "My 2 favourite memebers are 19 and 42"
+y = re.findall('[0-9]+', x)
+print(y)
 
+hand = open('mbox-short.txt')
+numlist = []
+for line in hand:
+    line = line.rstrip()
+    stuff = re.findall('^X-DSPAM-Confidence: ([0-9.]+)', line)
+    if len(stuff) != 1: continue
+    num = float(stuff[0])
+    numlist.append(num)
+print(max(numlist))
+
+icecream = "That icecream costs $10.54, my guy that's a lot"
+
+find_cost = re.findall('\$[0-9.]+', icecream)
+print(find_cost)
+
+## Networking
+import socket
+mysock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+mysock.connect(('data.pr4e.org', 80))
+cmd = 'GET http://data.pr4e.org/romeo.txt HTTP/1.0\r\n\r\n'.encode()
+mysock.send(cmd)
+while True:                                                         # mini-browser
+    data = mysock.recv(512)
+    if len(data) < 1:
+        break
+    print(data.decode())
+mysock.close()
+
+# urllib
+import urllib.request, urllib.parse, urllib.error
+fhand = urllib.request.urlopen('http://data.pr4e.org/romeo.txt')
+for line in fhand:
+    print(line.decode().strip())
+
+fhand = urllib.request.urlopen('http://data.pr4e.org/romeo.txt')
+counts = {}
+for line in fhand:
+    words = line.decode().split()
+    for word in words:
+        counts[word] = counts.get(word, 0) + 1
+arr = sorted([(v, k) for k, v in counts.items()], reverse=True)
+print([(v, k) for k, v in arr])
+
+## Web Scraping
+from bs4 import BeautifulSoup
+url = input('Enter - ')                         # scraping external links from web page
+html = urllib.request.urlopen(url).read()
+soup = BeautifulSoup(html, 'html.parser')
+tags = soup('a')
+for tag in tags:
+    print(tag.get('href', None))
