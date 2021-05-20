@@ -350,7 +350,7 @@ tree = ET.fromstring(data)
 print('Name:', tree.find('name').text)              # get text
 print('Attr:', tree.find('email').get('hide'))      # get attribute
 
-input = '''
+input_xml = '''
 <stuff>
   <users>
     <user x="2">
@@ -363,7 +363,7 @@ input = '''
     </user>
   </users>
 </stuff>'''
-stuff = ET.fromstring(input)
+stuff = ET.fromstring(input_xml)
 lst = stuff.findall('users/user')
 print('User count:', len(lst))
 for item in lst:                                    # go through the list of elements
@@ -371,7 +371,7 @@ for item in lst:                                    # go through the list of ele
     print('Id', item.find('id').text)
     print('Attribute', item.get('x'))
 
-#JSON
+# JSON
 import json
 
 data = '''
@@ -406,3 +406,70 @@ for item in info:
     print('Name', item['name'])
     print('Id', item['id'])
     print('Attribute', item['x'])
+
+## Python Objects
+class PartyAnimal:
+    x = 0
+    def party(self):
+        self.x = self.x + 1
+        print('So far', self.x)
+
+pa = PartyAnimal()
+pa.party()                              # isto kao PartyAnimal.party(pa)
+pa.party()
+print(pa.x)                             # prints object value
+
+dir(PartyAnimal)                        # returns all the methods inside a class
+
+
+# Constructor
+class PartyAnimal:
+    x = 0
+
+    def __init__(self):
+        print('I am constructed')
+
+    def party(self):
+        self.x = self.x + 1
+        print('So far', self.x)
+
+    def __del__(self):
+        print('I am destructed', self.x)
+pa = PartyAnimal()
+pa.party()
+pa.party()
+print(pa.x)
+pa = 42                                 # destroys the object
+print(pa)
+
+
+class PartyAnimal:
+    x = 0
+    name = ""
+    def __init__(self, z):
+        self.name = z
+        print(self.name, 'constructed')
+
+    def party(self):
+        self.x = self.x + 1
+        print(self.name, 'party count', self.x)
+
+s = PartyAnimal("Sally")
+s.party()
+
+j = PartyAnimal("Jimmy")
+j.party()
+s.party()
+
+# Inheritance
+class FootballFan(PartyAnimal):             # FootballFan inherits PartyAnimal and extends it
+    points = 0
+    def touchdown(self):
+        self.points = self.points + 7
+        self.party()
+        print(self.name, "points", self.points)
+
+ff = FootballFan("Josh")
+ff.party()
+ff.touchdown()
+
