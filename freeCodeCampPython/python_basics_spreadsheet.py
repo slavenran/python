@@ -371,6 +371,9 @@ for item in lst:                                    # go through the list of ele
     print('Id', item.find('id').text)
     print('Attribute', item.get('x'))
 
+filename = 'ashdhjfbsd'
+file = ET.parse(filename)                           # parses from xml to readable tree without string conversion
+
 # JSON
 import json
 
@@ -406,6 +409,20 @@ for item in info:
     print('Name', item['name'])
     print('Id', item['id'])
     print('Attribute', item['x'])
+
+
+fname = input('Enter file name: ')
+if len(fname) < 1: fname = 'roster_data_sample.json'
+file = open(fname).read()                   # transforms to string for json parsing
+json_data = json.loads(file)                # works like decode and only works on string
+
+x = {
+  "name": "John",
+  "age": 30,
+  "city": "New York"
+}
+
+y = json.dumps(x)                           # converts python dict to json
 
 ## Python Objects
 class PartyAnimal:
@@ -473,3 +490,27 @@ ff = FootballFan("Josh")
 ff.party()
 ff.touchdown()
 
+## Databases
+import sqlite3
+
+conn = sqlite3.connect('emaildb.sqlite')    # create a file
+cur = conn.cursor()                         # cursor is important because it points into database
+
+cur.execute('DROP TABLE IF EXISTS Counts')  # executing a query
+
+row = cur.fetchone()
+if row is None:
+            cur.execute('your query')
+else:
+            cur.execute('your query')
+conn.commit()
+
+sqlstr = 'SELECT * FROM Counts ORDER BY count DESC LIMIT 10'        # iterating tru query
+for row in cur.execute(sqlstr):
+    print(str(row[0]), row[1])
+
+cur.rowcount                                # number of rows affected
+
+cur.lastrowid                               # id of the last row that was made
+
+cur.close()                                 # always put at the end
