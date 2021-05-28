@@ -29,6 +29,7 @@ c = a * b       # Multiplication
 d = a / b       # Division (returns float)
 e = a // b      # Division (returns floor int)
 f = a % b       # Remainder of division
+g = a ** b      # a to the power of b (a^b)
 
 ## Types and conversions
 num = 4
@@ -188,6 +189,9 @@ x.sort()                        # list sorting
 max(y)
 min(y)
 sum(y)
+
+x = 9, 7 ,8
+y = list(x)                     # converts to list
 
 numbers = list()                # uses more memory but not much
 while True:
@@ -514,3 +518,14 @@ cur.rowcount                                # number of rows affected
 cur.lastrowid                               # id of the last row that was made
 
 cur.close()                                 # always put at the end
+
+## * and **
+def diction(*args):        # transforms all function parameters as to tuple
+    return args
+
+print(diction(5, 6, 7))
+
+def diction(**args):       # transforms all function parameters as to dict
+    return args
+
+print(diction(a=5, b=6, c=7))
