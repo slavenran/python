@@ -50,39 +50,6 @@ class Category():
 
         return result
 
-
-# def create_spend_chart(categories = []):
-#     result = 'Percentage spent by category\n'
-#     percent = [x.spent for x in categories]
-#     sum_percent = sum(percent)
-#     percent = [round(x/sum_percent*100) for x in percent]
-#     i = 100
-#     while i >= 0:
-#         i_str = str(i)
-#         result += ' '*(3-len(i_str)) + i_str + '| '
-#         for perc in percent:
-#             if perc/10 <= 5: perc -= perc%10
-#             else: perc += perc%10
-#             if perc >= i: result += 'o  '
-#             else: result += '   '
-#         result += '\n'
-#         i -= 10
-#     result += '    ' + '-'*(len(categories)*3+1) + '\n'
-#     i = 0
-#     category_str = ''
-#     max_category_length = max(len(ele.category_name) for ele in categories)
-#     while i in range(max_category_length):
-#         category_str += ' '*5
-#         for ele in categories:
-#             if i in range(len(ele.category_name)):
-#                 category_str += ele.category_name[i] + '  '
-#             else: category_str += '   '
-#         if i <= max_category_length-2:
-#           category_str += '\n'
-#         i += 1
-#     result += category_str
-#     return result
-
 def create_spend_chart_dict(categories = []):
     result = 'Percentage spent by category\n'
     data = dict([(x.category_name, x.spent) for x in categories])
