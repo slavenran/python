@@ -42,13 +42,22 @@ def drake_art():
  | \____(      )___) )____
   \______(_______;;;)__;;;)'''
 
+def tense_situation():
+    time.sleep(1)
+    print('.')
+    time.sleep(1)
+    print('.')
+    time.sleep(1)
+    print('.')
+    time.sleep(1)
+
 def interact():
     if knight['current_room']['shop']: 
         while True:
             agree = input('You meet the shady shopkeeper. Would you like to buy something? Yes or no\n')
             if agree.lower() == 'no': return
             elif agree.lower() == 'yes':
-                buy = input('What do you want to buy: potion (restored 30 HP) for 10 coins, magic (almighty power, 100dmg) for 150 coins, or nothing?\n')
+                buy = input('What do you want to buy: potion (restores 30 HP) for 10 coins, magic (almighty power, 100dmg) for 150 coins, or nothing?\n')
                 if buy.lower() == 'nothing': 
                     print('You have choosen to buy nothing.')
                 elif buy.lower() == 'magic':
@@ -64,8 +73,10 @@ def interact():
                     if knight['coins'] >= 10:
                         if knight['hp'] < 100:
                             knight['hp'] += 30
+                            if knight['hp'] > 100:
+                                knight['hp'] = 100
                             knight['coins'] -= 10
-                            print(f"You have healed yourself for 10 hp! You have {knight['hp']} HP now!")
+                            print(f"You have healed yourself for 30 hp! You have {knight['hp']} HP now!")
                         else: print('Your hp is too high!')
                     else: print('Not enought coins. Go slay some monsters!')
                 else: print(f"{buy} is not on sale.")
@@ -78,13 +89,7 @@ def interact():
                     print('You have already opened this chest.')
                     return
                 print('You begin to open the chest')
-                time.sleep(1)
-                print('.')
-                time.sleep(1)
-                print('.')
-                time.sleep(1)
-                print('.')
-                time.sleep(1)
+                tense_situation()
                 print('You found 100 coins in the chest! You are rich!')
                 knight['coins'] += 100
                 knight['current_room']['chest'] = False
@@ -98,13 +103,7 @@ def interact():
             if agree.lower() == 'no': return
             elif agree.lower() == 'yes':
                 print('You begin to pull on it')
-                time.sleep(1)
-                print('.')
-                time.sleep(1)
-                print('.')
-                time.sleep(1)
-                print('.')
-                time.sleep(1)
+                tense_situation()
                 print('You obtained the almighty sword! Your damage has increased.')
                 knight['sword'] = True
                 knight['dmg'] += 30
@@ -129,7 +128,7 @@ def interact():
                 damage = knight['dmg']
                 if knight['magic'] == True:
                     while True:
-                        magic_use = input("Do you want to consume your magic to deal damage in this room? Yes or no")
+                        magic_use = input("Do you want to consume your magic to deal damage in this room? Yes or no\n")
                         if magic_use.lower() == 'yes':
                             damage = 100
                             break
