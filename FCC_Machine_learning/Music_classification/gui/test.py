@@ -15,5 +15,4 @@ button = Button(root, text="Click Me", command=handleClick, fg="blue", bg="red")
 
 button.pack()
 
-
 root.mainloop()
