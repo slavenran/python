@@ -36,9 +36,9 @@ def arithmetic_arranger(problems, solve=False):
         exceptions = exception_handler(top_var, operand, mid_var)
         if exceptions != '': return exceptions
 
-        top += '.'*(max_len-top_len+2) + top_var + space
+        top += ' '*(max_len-top_len+2) + top_var + space
 
-        middle += operand + '.'*(max_len-mid_len+1) + mid_var + space
+        middle += operand + ' '*(max_len-mid_len+1) + mid_var + space
 
         bottom += '-'*(max_len+2) + space
 
@@ -48,7 +48,7 @@ def arithmetic_arranger(problems, solve=False):
             result = top_num - mid_num
             if operand == '+':
                 result = top_num + mid_num
-            solved += '.'*(max_len+2-len(str(result))) + str(result) + space
+            solved += ' '*(max_len+2-len(str(result))) + str(result) + space
     
     return top.rstrip() + '\n' + middle.rstrip() + '\n' + bottom.rstrip() + solved.rstrip()
 
