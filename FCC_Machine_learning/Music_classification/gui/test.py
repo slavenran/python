@@ -1,6 +1,6 @@
 from tkinter import *
 
-root = Tk();
+root = Tk()
 
 entry = Entry(root, width=50)
 entry.pack()
