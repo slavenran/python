@@ -11,7 +11,12 @@ def handleClick():
     label = Label(root, text="Fill this with music prediction logic")
     label.pack()
 
-button = Button(root, text="Click Me", command=handleClick, fg="blue", bg="red")
+def printEntry():
+    hello = "Hello there " + entry.get()
+    label = Label(root, text=hello)
+    label.pack()
+
+button = Button(root, text="Click Me", command=printEntry, fg="blue", bg="red")
 
 button.pack()
 
