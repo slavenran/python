@@ -29,10 +29,12 @@ async def async_predict(predict_fun, predictionMessage):
 async def prediction_string(predict_fun):
     return predict_fun
 
-def open_file(button, buttonPredict, buttonAfter, successMessage):
+def open_file(button, buttonPredict, buttonAfter, successMessage, predictionMessage = None):
     file_path = askopenfile(mode='r', filetypes=[("Audio Files", ".wav .ogg"),   ("All Files", "*.*")])
 
     if file_path is not None:
+        if predictionMessage != None:
+            predictionMessage.grid_remove()
         button.grid_remove()
 
         file_name_short = file_path.name.split('/')[-1]
@@ -59,7 +61,7 @@ def gui(async_loop):
     predictionMessage = Label(root, text='')
     progressBar = Progressbar(root, orient=HORIZONTAL, length=100, mode='indeterminate')
     buttonPredict = Button(root, text="Predict the genre", command=lambda:do_prediction(async_loop, progressBar, predictionMessage))
-    buttonAfter = Button(root, text="Choose another song", command=lambda:open_file(button, buttonPredict, buttonAfter, successMessage))
+    buttonAfter = Button(root, text="Choose another song", command=lambda:open_file(button, buttonPredict, buttonAfter, successMessage, predictionMessage))
     button = Button(root, text="Choose a song", command=lambda:open_file(button, buttonPredict, buttonAfter, successMessage))
 
     # Components setting
