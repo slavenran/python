@@ -19,7 +19,7 @@ genres = [
     ]
 
 # Filepath to model
-model_filepath = "../models/full_model"
+model_filepath = "../models/full_model_high_accuracy"
 
 # load the model
 model = load_model(model_filepath, compile=True)
